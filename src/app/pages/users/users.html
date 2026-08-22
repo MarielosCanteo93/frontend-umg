@@ -1,0 +1,663 @@
+<div class="users-page">
+
+  <!-- =====================================================
+       ENCABEZADO
+  ====================================================== -->
+
+  <div class="users-header">
+
+    <div>
+      <span class="page-eyebrow">
+        ADMINISTRACIÓN
+      </span>
+
+      <h1>
+        Usuarios
+      </h1>
+
+      <p>
+        Gestión de usuarios del sistema
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="btn-primary"
+      (click)="openUserModal()"
+    >
+      <span>+</span>
+      Nuevo usuario
+    </button>
+
+  </div>
+
+
+  <!-- =====================================================
+       MENSAJE DE ÉXITO
+  ====================================================== -->
+
+  <div
+    class="success-alert"
+    *ngIf="successMessage"
+  >
+
+    <span>✓</span>
+
+    <span>
+      {{ successMessage }}
+    </span>
+
+  </div>
+
+
+  <!-- =====================================================
+       CARD PRINCIPAL
+  ====================================================== -->
+
+  <div class="users-card">
+
+    <!-- HEADER -->
+
+    <div class="card-header">
+
+      <div>
+
+        <h2>
+          Usuarios registrados
+        </h2>
+
+        <p>
+          Consulta y administra los usuarios del sistema.
+        </p>
+
+      </div>
+
+      <div class="user-count">
+
+        {{ filteredUsers.length }}
+
+        <span>
+          usuarios
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         BÚSQUEDA
+    ==================================================== -->
+
+    <div class="card-toolbar">
+
+      <div class="search-box">
+
+        <span class="search-icon">
+          🔍
+        </span>
+
+        <input
+          type="text"
+          placeholder="Buscar por usuario, nombre o rol..."
+          [(ngModel)]="searchTerm"
+          (input)="searchUsers()"
+        />
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         CARGANDO
+    ==================================================== -->
+
+    <div
+      class="loading-state"
+      *ngIf="loading"
+    >
+
+      <div class="loading-spinner"></div>
+
+      <span>
+        Cargando usuarios...
+      </span>
+
+    </div>
+
+
+    <!-- ===================================================
+         ERROR
+    ==================================================== -->
+
+    <div
+      class="error-state"
+      *ngIf="!loading && errorMessage"
+    >
+
+      <span>
+        ⚠️
+      </span>
+
+      <div>
+
+        <strong>
+          No se pudo completar la operación
+        </strong>
+
+        <p>
+          {{ errorMessage }}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         TABLA
+    ==================================================== -->
+
+    <div
+      class="table-container"
+      *ngIf="!loading && !errorMessage"
+    >
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Usuario
+            </th>
+
+            <th>
+              Nombre completo
+            </th>
+
+            <th>
+              Rol
+            </th>
+
+            <th>
+              Estado
+            </th>
+
+            <th>
+              Último acceso
+            </th>
+
+            <th>
+              Acciones
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <!-- USUARIOS -->
+
+          <tr
+            *ngFor="
+              let user of filteredUsers;
+              trackBy: trackByUserId
+            "
+          >
+
+            <!-- USUARIO -->
+
+            <td>
+
+              <div class="user-cell">
+
+                <div class="avatar">
+
+                  {{
+                    user.UMG_Nombre?.charAt(0) || '?'
+                  }}
+
+                </div>
+
+                <strong>
+                  {{ user.UMG_Usuario }}
+                </strong>
+
+              </div>
+
+            </td>
+
+
+            <!-- NOMBRE -->
+
+            <td>
+
+              <strong>
+                {{ user.UMG_Nombre }}
+                {{ user.UMG_Apellido }}
+              </strong>
+
+            </td>
+
+
+            <!-- ROL -->
+
+            <td>
+
+              <span class="role-badge">
+
+                {{ user.UMG_Rol_Nombre }}
+
+              </span>
+
+            </td>
+
+
+            <!-- ESTADO -->
+
+            <td>
+
+              <span
+                class="status-badge"
+                [class.active]="user.UMG_Estado === 1"
+                [class.inactive]="user.UMG_Estado !== 1"
+              >
+
+                <span class="status-dot"></span>
+
+                {{ getStatusText(user.UMG_Estado) }}
+
+              </span>
+
+            </td>
+
+
+            <!-- ÚLTIMO ACCESO -->
+
+            <td>
+
+              <span class="last-access">
+
+                {{ user.UMG_Ultimo_Acceso || 'Nunca' }}
+
+              </span>
+
+            </td>
+
+
+            <!-- ACCIONES -->
+
+            <td>
+
+              <div class="actions">
+
+                <!-- EDITAR -->
+
+                <button
+                  type="button"
+                  class="icon-button"
+                  title="Editar usuario"
+                  (click)="editUser(user)"
+                >
+                  ✏️
+                </button>
+
+
+                <!-- ELIMINAR -->
+
+                <button
+                  type="button"
+                  class="icon-button delete"
+                  title="Eliminar usuario"
+                  (click)="deleteUser(user)"
+                >
+                  🗑️
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+
+          <!-- SIN RESULTADOS -->
+
+          <tr
+            *ngIf="filteredUsers.length === 0"
+          >
+
+            <td
+              colspan="6"
+              class="empty-state"
+            >
+
+              <div class="empty-icon">
+                👥
+              </div>
+
+              <strong>
+                No se encontraron usuarios
+              </strong>
+
+              <p>
+                Intenta cambiar el criterio de búsqueda.
+              </p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL NUEVO / EDITAR USUARIO
+====================================================== -->
+
+<div
+  class="modal-backdrop"
+  *ngIf="showUserModal"
+  (click)="closeUserModal()"
+>
+
+  <div
+    class="user-modal"
+    (click)="$event.stopPropagation()"
+  >
+
+
+    <!-- =================================================
+         HEADER DEL MODAL
+    ================================================== -->
+
+    <div class="modal-header">
+
+      <div>
+
+        <span class="modal-eyebrow">
+          ADMINISTRACIÓN
+        </span>
+
+        <h2>
+
+          {{
+            editingUserId === null
+              ? 'Nuevo usuario'
+              : 'Editar usuario'
+          }}
+
+        </h2>
+
+        <p>
+
+          {{
+            editingUserId === null
+              ? 'Registra un nuevo usuario en el sistema.'
+              : 'Actualiza la información del usuario.'
+          }}
+
+        </p>
+
+      </div>
+
+
+      <!-- CERRAR -->
+
+      <button
+        type="button"
+        class="modal-close"
+        [disabled]="saving"
+        (click)="closeUserModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <!-- =================================================
+         ERROR DEL FORMULARIO
+    ================================================== -->
+
+    <div
+      class="form-alert"
+      *ngIf="errorMessage"
+    >
+
+      <span>
+        ⚠️
+      </span>
+
+      <span>
+        {{ errorMessage }}
+      </span>
+
+    </div>
+
+
+    <!-- =================================================
+         FORMULARIO
+    ================================================== -->
+
+    <div class="form-grid">
+
+
+      <!-- ===============================================
+           USUARIO / CORREO
+      ================================================ -->
+
+      <div class="form-field">
+
+        <label>
+          Usuario
+          <span>*</span>
+        </label>
+
+        <input
+          type="email"
+          [(ngModel)]="newUser.UMG_Usuario"
+          placeholder="Ej. jperez@miumg.edu.gt"
+          [disabled]="saving"
+        />
+
+      </div>
+
+
+      <!-- ===============================================
+           NOMBRE
+      ================================================ -->
+
+      <div class="form-field">
+
+        <label>
+          Nombre
+          <span>*</span>
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="newUser.UMG_Nombre"
+          placeholder="Ej. Juan"
+          [disabled]="saving"
+        />
+
+      </div>
+
+
+      <!-- ===============================================
+           APELLIDO
+      ================================================ -->
+
+      <div class="form-field">
+
+        <label>
+          Apellido
+          <span>*</span>
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="newUser.UMG_Apellido"
+          placeholder="Ej. Pérez"
+          [disabled]="saving"
+        />
+
+      </div>
+
+
+      <!-- ===============================================
+           ROL
+      ================================================ -->
+
+      <div class="form-field">
+
+        <label>
+          Rol
+          <span>*</span>
+        </label>
+
+        <select
+          [(ngModel)]="newUser.UMG_Rol_ID"
+          [disabled]="saving"
+        >
+
+          <option [ngValue]="0">
+            Selecciona un rol
+          </option>
+
+          <option [ngValue]="1">
+            Administrador
+          </option>
+
+          <option [ngValue]="2">
+            Profesor
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ===============================================
+           CONTRASEÑA
+      ================================================ -->
+
+      <div
+        class="form-field"
+        *ngIf="editingUserId === null"
+      >
+
+        <label>
+          Contraseña
+          <span>*</span>
+        </label>
+
+        <input
+          type="password"
+          [(ngModel)]="newUser.UMG_Contrasena"
+          placeholder="Mínimo 6 caracteres"
+          [disabled]="saving"
+        />
+
+      </div>
+
+
+      <!-- ===============================================
+           ESTADO
+      ================================================ -->
+
+      <div class="form-field">
+
+        <label>
+          Estado
+        </label>
+
+        <select
+          [(ngModel)]="newUser.UMG_Estado"
+          [disabled]="saving"
+        >
+
+          <option [ngValue]="1">
+            Activo
+          </option>
+
+          <option [ngValue]="0">
+            Inactivo
+          </option>
+
+        </select>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <div class="modal-footer">
+
+
+      <!-- CANCELAR -->
+
+      <button
+        type="button"
+        class="btn-secondary"
+        [disabled]="saving"
+        (click)="closeUserModal()"
+      >
+
+        Cancelar
+
+      </button>
+
+
+      <!-- CREAR / GUARDAR -->
+
+      <button
+        type="button"
+        class="btn-primary"
+        [disabled]="saving"
+        (click)="createUser()"
+      >
+
+        <span *ngIf="!saving">
+
+          {{
+            editingUserId === null
+              ? 'Crear usuario'
+              : 'Guardar cambios'
+          }}
+
+        </span>
+
+
+        <span *ngIf="saving">
+
+          Guardando...
+
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

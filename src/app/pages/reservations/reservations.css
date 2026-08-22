@@ -1,0 +1,967 @@
+.page-container {
+  padding: 32px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.page-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #64748b;
+}
+
+.page-header h1 {
+  margin: 6px 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.page-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.header-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #e0f2fe;
+  font-size: 25px;
+}
+
+
+/* =========================
+   RESUMEN
+========================= */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.summary-icon {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #f1f5f9;
+  font-size: 21px;
+}
+
+.summary-card span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.summary-card strong {
+  display: block;
+  color: #0f172a;
+  font-size: 24px;
+}
+
+
+/* =========================
+   TARJETA PRINCIPAL
+========================= */
+
+.content-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar {
+  padding: 22px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.toolbar h2 {
+  margin: 0 0 5px;
+  color: #0f172a;
+  font-size: 18px;
+}
+
+.toolbar p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* =========================
+   BÚSQUEDA
+========================= */
+
+.search-box {
+  width: 300px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  color: #0f172a;
+}
+
+.search-box input::placeholder {
+  color: #94a3b8;
+}
+
+
+/* =========================
+   BOTÓN NUEVA RESERVA
+========================= */
+
+.new-button {
+  height: 42px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 9px;
+  background: #0f172a;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.new-button:hover {
+  background: #1e293b;
+}
+
+
+/* =========================
+   TABLA
+========================= */
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+th {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+td {
+  padding: 16px 18px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 13px;
+  color: #334155;
+}
+
+tbody tr {
+  transition: background 0.15s ease;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+
+/* =========================
+   DOCENTE
+========================= */
+
+.teacher-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.teacher-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #475569;
+}
+
+.teacher-cell strong {
+  display: block;
+  color: #0f172a;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.teacher-cell span {
+  display: block;
+  margin-top: 3px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+
+/* =========================
+   LABORATORIO
+========================= */
+
+.lab-cell {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.lab-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lab-cell strong {
+  display: block;
+  color: #0f172a;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.lab-cell span {
+  display: block;
+  margin-top: 3px;
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+
+/* =========================
+   FECHA / HORA
+========================= */
+
+.date-value {
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.time-value {
+  white-space: nowrap;
+  color: #475569;
+}
+
+
+/* =========================
+   MOTIVO
+========================= */
+
+.reason {
+  max-width: 180px;
+  line-height: 1.4;
+  color: #475569;
+}
+
+
+/* =========================
+   ESTADOS
+========================= */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-badge.active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-badge.completed {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status-badge.cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-badge.default {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+
+/* =========================
+   ACCIONES
+========================= */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.action-button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.action-button:hover {
+  background: #f8fafc;
+}
+
+.action-button.danger:hover {
+  background: #fef2f2;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-state {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+}
+
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #475569;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-state {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #64748b;
+}
+
+.error-state span {
+  font-size: 30px;
+}
+
+.error-state p {
+  margin: 0;
+}
+
+.error-state button {
+  border: none;
+  padding: 9px 16px;
+  border-radius: 8px;
+  background: #0f172a;
+  color: white;
+  cursor: pointer;
+}
+
+
+/* =========================
+   VACÍO
+========================= */
+
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.empty-state strong {
+  display: block;
+  color: #334155;
+  margin-bottom: 5px;
+}
+
+.empty-state span {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+  .page-container {
+    padding: 20px;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    width: auto;
+  }
+
+}
+/* =========================================================
+   MODAL NUEVA RESERVA
+========================================================= */
+
+.modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+
+  background: rgba(15, 23, 42, 0.55);
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 24px;
+
+  box-sizing: border-box;
+
+  z-index: 99999 !important;
+
+  overflow-y: auto;
+}
+
+
+/* =========================================================
+   CONTENEDOR DEL MODAL
+========================================================= */
+
+.reservation-modal {
+  position: relative !important;
+
+  width: min(720px, 100%) !important;
+
+  max-height: calc(100vh - 48px);
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.25);
+
+  overflow: hidden;
+
+  animation: reservationModalIn 0.2s ease-out;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ANIMACIÓN
+========================================================= */
+
+@keyframes reservationModalIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.reservation-modal .modal-header {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 26px 30px 20px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+.reservation-modal .modal-header h2 {
+
+  margin: 5px 0 5px;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  color: #111827;
+
+}
+
+
+.reservation-modal .modal-header p {
+
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+
+}
+
+
+.modal-eyebrow {
+
+  display: block;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  color: #6b7280;
+
+}
+
+
+/* =========================================================
+   BOTÓN CERRAR
+========================================================= */
+
+.reservation-modal .modal-close {
+
+  border: none;
+
+  background: transparent;
+
+  color: #6b7280;
+
+  font-size: 30px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  padding: 2px 6px;
+
+}
+
+
+.reservation-modal .modal-close:hover {
+
+  color: #111827;
+
+}
+
+
+/* =========================================================
+   ALERTA
+========================================================= */
+
+.reservation-modal .form-alert {
+
+  margin: 20px 30px 0;
+
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  background: #fef2f2;
+
+  color: #b91c1c;
+
+  border: 1px solid #fecaca;
+
+  display: flex;
+
+  gap: 10px;
+
+  align-items: center;
+
+  font-size: 14px;
+
+}
+
+
+/* =========================================================
+   FORMULARIO
+========================================================= */
+
+.reservation-modal .form-grid {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+
+  padding: 26px 30px;
+
+  overflow-y: auto;
+
+  max-height: calc(100vh - 230px);
+
+}
+
+
+.reservation-modal .form-field {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+
+}
+
+
+.reservation-modal .form-field.full-width {
+
+  grid-column: 1 / -1;
+
+}
+
+
+.reservation-modal .form-field label {
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #374151;
+
+}
+
+
+.reservation-modal .form-field label span {
+
+  color: #dc2626;
+
+}
+
+
+.reservation-modal .form-field input,
+
+.reservation-modal .form-field select,
+
+.reservation-modal .form-field textarea {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 9px;
+
+  padding: 11px 12px;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  color: #111827;
+
+  background: #ffffff;
+
+  outline: none;
+
+}
+
+
+.reservation-modal .form-field input:focus,
+
+.reservation-modal .form-field select:focus,
+
+.reservation-modal .form-field textarea:focus {
+
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+
+}
+
+
+.reservation-modal .form-field textarea {
+
+  resize: vertical;
+
+  min-height: 95px;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.reservation-modal .modal-footer {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding: 18px 30px;
+
+  border-top: 1px solid #e5e7eb;
+
+  background: #ffffff;
+
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.reservation-modal .btn-secondary,
+
+.reservation-modal .btn-primary {
+
+  border: none;
+
+  border-radius: 9px;
+
+  padding: 11px 20px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+}
+
+
+.reservation-modal .btn-secondary {
+
+  background: #f3f4f6;
+
+  color: #374151;
+
+}
+
+
+.reservation-modal .btn-secondary:hover {
+
+  background: #e5e7eb;
+
+}
+
+
+.reservation-modal .btn-primary {
+
+  background: #1d4ed8;
+
+  color: #ffffff;
+
+}
+
+
+.reservation-modal .btn-primary:hover {
+
+  background: #1e40af;
+
+}
+
+
+.reservation-modal button:disabled {
+
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .modal-backdrop {
+
+    padding: 12px;
+
+  }
+
+
+  .reservation-modal {
+
+    max-height: calc(100vh - 24px);
+
+    border-radius: 14px;
+
+  }
+
+
+  .reservation-modal .form-grid {
+
+    grid-template-columns: 1fr;
+
+    padding: 20px;
+
+  }
+
+
+  .reservation-modal .form-field.full-width {
+
+    grid-column: auto;
+
+  }
+
+
+  .reservation-modal .modal-header {
+
+    padding: 20px;
+
+  }
+
+
+  .reservation-modal .modal-footer {
+
+    padding: 16px 20px;
+
+  }
+
+}

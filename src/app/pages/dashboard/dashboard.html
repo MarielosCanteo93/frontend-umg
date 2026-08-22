@@ -1,0 +1,338 @@
+<div class="dashboard">
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="dashboard-header">
+
+    <div class="welcome">
+
+      <span class="dashboard-eyebrow">
+        UMG LAB · SISTEMA DE GESTIÓN
+      </span>
+
+      <h1>
+        Panel principal
+      </h1>
+
+      <p>
+        Administración y control de laboratorios
+      </p>
+
+    </div>
+
+
+    <div class="user-info">
+
+      <div class="user-avatar">
+        M
+      </div>
+
+      <div class="user-details">
+
+        <strong>
+          Marielos Canteo
+        </strong>
+
+        <span>
+          Administrador
+        </span>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       PANAL PRINCIPAL
+  ====================================================== -->
+
+  <section class="honeycomb-section">
+
+    <!-- Decoración de fondo -->
+
+    <div class="background-hex hex-one"></div>
+    <div class="background-hex hex-two"></div>
+    <div class="background-hex hex-three"></div>
+    <div class="background-hex hex-four"></div>
+    <div class="background-hex hex-five"></div>
+    <div class="background-hex hex-six"></div>
+
+
+    <!-- Líneas de conexión -->
+
+    <div class="connection connection-one"></div>
+    <div class="connection connection-two"></div>
+    <div class="connection connection-three"></div>
+    <div class="connection connection-four"></div>
+
+
+    <!-- ===================================================
+         USUARIOS
+    ==================================================== -->
+
+    <a
+      routerLink="/users"
+      class="hex-card hex-users"
+      title="Administrar usuarios">
+
+      <div class="hex-inner">
+
+        <div class="hex-icon">
+          👥
+        </div>
+
+        <div class="hex-label">
+          USUARIOS
+        </div>
+
+        <div class="hex-number">
+          {{ totalUsers }}
+        </div>
+
+        <div class="hex-description">
+          Usuarios registrados
+        </div>
+
+        <div class="hex-action">
+          Administrar →
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- ===================================================
+         LABORATORIOS
+    ==================================================== -->
+
+    <a
+      routerLink="/laboratories"
+      class="hex-card hex-labs"
+      title="Administrar laboratorios">
+
+      <div class="hex-inner">
+
+        <div class="hex-icon">
+          🧪
+        </div>
+
+        <div class="hex-label">
+          LABORATORIOS
+        </div>
+
+        <div class="hex-number">
+          {{ totalLaboratories }}
+        </div>
+
+        <div class="hex-description">
+          Laboratorios registrados
+        </div>
+
+        <div class="hex-action">
+          Administrar →
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- ===================================================
+         CENTRO
+    ==================================================== -->
+
+    <a
+      routerLink="/dashboard"
+      class="hex-card hex-center"
+      title="Panel principal">
+
+      <div class="hex-inner">
+
+        <div class="center-logo">
+          ⚙
+        </div>
+
+        <div class="center-label">
+          UMG LAB
+        </div>
+
+        <div class="center-title">
+          SISTEMA
+        </div>
+
+        <div class="center-description">
+          Gestión de Laboratorios
+        </div>
+
+        <div class="online-status">
+
+          <span></span>
+
+          Sistema operativo
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- ===================================================
+         RESERVAS
+    ==================================================== -->
+
+    <a
+      routerLink="/reservations"
+      class="hex-card hex-reservations"
+      title="Administrar reservas">
+
+      <div class="hex-inner">
+
+        <div class="hex-icon">
+          📅
+        </div>
+
+        <div class="hex-label">
+          RESERVAS
+        </div>
+
+        <div class="hex-number">
+          {{ totalReservations }}
+        </div>
+
+        <div class="hex-description">
+          Reservas registradas
+        </div>
+
+        <div class="hex-action">
+          Administrar →
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- ===================================================
+         DISPONIBILIDAD
+    ==================================================== -->
+
+    <a
+      routerLink="/laboratories"
+      class="hex-card hex-available"
+      title="Consultar disponibilidad">
+
+      <div class="hex-inner">
+
+        <div class="hex-icon available-icon">
+          ✓
+        </div>
+
+        <div class="hex-label">
+          DISPONIBLES
+        </div>
+
+        <div class="hex-number">
+          {{ availableLaboratories }}
+        </div>
+
+        <div class="hex-description">
+          Laboratorios disponibles
+        </div>
+
+        <div class="hex-action">
+          Consultar →
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- ===================================================
+         BLOQUEOS
+    ==================================================== -->
+
+    <a
+      routerLink="/locks"
+      class="hex-card hex-locks"
+      title="Administrar bloqueos">
+
+      <div class="hex-inner">
+
+        <div class="hex-icon">
+          🔒
+        </div>
+
+        <div class="hex-label">
+          BLOQUEOS
+        </div>
+
+        <div class="hex-number">
+          →
+        </div>
+
+        <div class="hex-description">
+          Restricciones y bloqueos
+        </div>
+
+        <div class="hex-action">
+          Consultar →
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- ===================================================
+         DECORACIÓN INFERIOR
+    ==================================================== -->
+
+    <div class="system-status">
+
+      <div class="status-indicator">
+
+        <span class="status-light"></span>
+
+        <div>
+
+          <strong>
+            Sistema conectado
+          </strong>
+
+          <span>
+            API UMG disponible
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="status-info">
+
+        <span>
+          UMG LAB
+        </span>
+
+        <span>
+          •
+        </span>
+
+        <span>
+          Plataforma de gestión
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

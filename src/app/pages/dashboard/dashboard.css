@@ -1,0 +1,1269 @@
+/* =========================================================
+   UMG LAB
+   DASHBOARD HEXAGONAL
+   ESTILO TECNOLÓGICO AZUL
+========================================================= */
+
+.dashboard {
+
+  min-height: 100vh;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(24, 119, 201, 0.18),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 75%,
+      rgba(0, 174, 255, 0.10),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(11, 77, 120, 0.08),
+      transparent 45%
+    ),
+    #061522;
+
+  color: #eaf6ff;
+
+  overflow: hidden;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.dashboard-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 22px;
+
+}
+
+
+.dashboard-eyebrow {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #42b8ff;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 2.5px;
+
+}
+
+
+.welcome h1 {
+
+  margin: 0;
+
+  color: #f1faff;
+
+  font-size: 30px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.8px;
+
+}
+
+
+.welcome p {
+
+  margin: 7px 0 0;
+
+  color: #7698ae;
+
+  font-size: 13px;
+
+}
+
+
+/* =========================================================
+   USUARIO
+========================================================= */
+
+.user-info {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 8px 14px 8px 8px;
+
+  border: 1px solid
+    rgba(68, 172, 235, 0.18);
+
+  border-radius: 14px;
+
+  background:
+    rgba(11, 36, 56, 0.72);
+
+  backdrop-filter: blur(12px);
+
+}
+
+
+.user-avatar {
+
+  width: 42px;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1677c8,
+      #27a9ff
+    );
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 0 20px
+    rgba(39, 169, 255, 0.25);
+
+}
+
+
+.user-details {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+}
+
+
+.user-details strong {
+
+  color: #eaf6ff;
+
+  font-size: 12px;
+
+}
+
+
+.user-details span {
+
+  color: #6f91a8;
+
+  font-size: 10px;
+
+}
+
+
+/* =========================================================
+   PANAL
+========================================================= */
+
+.honeycomb-section {
+
+  position: relative;
+
+  min-height: 650px;
+
+  display: block;
+
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(41, 145, 211, 0.16);
+
+  border-radius: 26px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(11, 36, 56, 0.94),
+      rgba(5, 24, 39, 0.98)
+    );
+
+  box-shadow:
+    inset 0 0 80px
+    rgba(21, 124, 190, 0.05),
+
+    0 25px 70px
+    rgba(0, 0, 0, 0.28);
+
+}
+
+
+/* =========================================================
+   GRID DE FONDO
+========================================================= */
+
+.honeycomb-section::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.22;
+
+  background-image:
+    linear-gradient(
+      rgba(44, 147, 210, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(44, 147, 210, 0.07) 1px,
+      transparent 1px
+    );
+
+  background-size: 42px 42px;
+
+  pointer-events: none;
+
+}
+
+
+/* =========================================================
+   HEXÁGONOS
+========================================================= */
+
+.hex-card {
+
+  position: absolute;
+
+  width: 225px;
+
+  height: 255px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  clip-path: polygon(
+    25% 6.7%,
+    75% 6.7%,
+    100% 50%,
+    75% 93.3%,
+    25% 93.3%,
+    0 50%
+  );
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(30, 142, 218, 0.98),
+      rgba(6, 45, 72, 0.99)
+    );
+
+  text-decoration: none;
+
+  color: inherit;
+
+  cursor: pointer;
+
+  z-index: 3;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+
+}
+
+
+.hex-card::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 2px;
+
+  clip-path: inherit;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0b304c,
+      #061a2b
+    );
+
+  z-index: -1;
+
+}
+
+
+.hex-card:hover {
+
+  transform: scale(1.055);
+
+  filter:
+    drop-shadow(
+      0 0 24px
+      rgba(39, 169, 255, 0.42)
+    );
+
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.hex-inner {
+
+  position: relative;
+
+  z-index: 4;
+
+  width: 155px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+}
+
+
+.hex-icon {
+
+  width: 46px;
+
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 8px;
+
+  border: 1px solid
+    rgba(65, 185, 255, 0.22);
+
+  border-radius: 13px;
+
+  background:
+    rgba(27, 136, 201, 0.12);
+
+  font-size: 23px;
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(39, 169, 255, 0.45)
+    );
+
+}
+
+
+.hex-label {
+
+  color: #65c6ff;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+}
+
+
+.hex-number {
+
+  margin-top: 5px;
+
+  color: #ffffff;
+
+  font-size: 37px;
+
+  font-weight: 700;
+
+  line-height: 1;
+
+}
+
+
+.hex-description {
+
+  margin-top: 8px;
+
+  color: #6f91a8;
+
+  font-size: 10px;
+
+  line-height: 1.4;
+
+}
+
+
+.hex-action {
+
+  margin-top: 11px;
+
+  color: #3eb3f5;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.5px;
+
+  opacity: 0;
+
+  transform: translateY(4px);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+}
+
+
+.hex-card:hover .hex-action {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+
+/* =========================================================
+   HEXÁGONO CENTRAL
+========================================================= */
+
+.hex-center {
+
+  width: 255px;
+
+  height: 285px;
+
+  z-index: 6;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1fa5f5,
+      #07578d
+    );
+
+  filter:
+    drop-shadow(
+      0 0 30px
+      rgba(24, 151, 230, 0.25)
+    );
+
+}
+
+
+.hex-center::before {
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      #0c456b,
+      #061b2d
+    );
+
+}
+
+
+.center-logo {
+
+  width: 58px;
+
+  height: 58px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 10px;
+
+  border: 1px solid
+    rgba(70, 190, 255, 0.45);
+
+  border-radius: 16px;
+
+  background:
+    rgba(24, 132, 199, 0.22);
+
+  color: #4fc0ff;
+
+  font-size: 29px;
+
+  box-shadow:
+    0 0 25px
+    rgba(39, 169, 255, 0.18);
+
+}
+
+
+.center-label {
+
+  color: #73ceff;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 2.5px;
+
+}
+
+
+.center-title {
+
+  margin-top: 5px;
+
+  color: #ffffff;
+
+  font-size: 23px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+}
+
+
+.center-description {
+
+  margin-top: 5px;
+
+  color: #8ec9e9;
+
+  font-size: 10px;
+
+}
+
+
+/* =========================================================
+   ESTADO ONLINE
+========================================================= */
+
+.online-status {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 17px;
+
+  padding: 6px 10px;
+
+  border: 1px solid
+    rgba(53, 211, 132, 0.18);
+
+  border-radius: 20px;
+
+  background:
+    rgba(28, 165, 100, 0.08);
+
+  color: #69dfa3;
+
+  font-size: 9px;
+
+}
+
+
+.online-status span {
+
+  width: 6px;
+
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #42dc91;
+
+  box-shadow:
+    0 0 8px
+    rgba(66, 220, 145, 0.7);
+
+}
+
+
+/* =========================================================
+   POSICIONES
+========================================================= */
+
+/*
+     USUARIOS                DISPONIBLES
+
+             LABORATORIOS
+                   /
+             [ UMG LAB ]
+                   \
+              RESERVAS
+
+                  BLOQUEOS
+*/
+
+
+.hex-users {
+
+  left: 18%;
+
+  top: 55px;
+
+}
+
+
+.hex-available {
+
+  right: 18%;
+
+  top: 55px;
+
+}
+
+
+.hex-labs {
+
+  left: 29%;
+
+  bottom: 82px;
+
+}
+
+
+.hex-reservations {
+
+  right: 29%;
+
+  bottom: 82px;
+
+}
+
+
+.hex-locks {
+
+  left: 50%;
+
+  bottom: -35px;
+
+  transform:
+    translateX(-50%)
+    scale(0.82);
+
+  opacity: 0.95;
+
+}
+
+
+.hex-locks:hover {
+
+  transform:
+    translateX(-50%)
+    scale(0.86);
+
+}
+
+
+/* =========================================================
+   CONEXIONES
+========================================================= */
+
+.connection {
+
+  position: absolute;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(39, 169, 255, 0.38),
+      transparent
+    );
+
+  z-index: 1;
+
+  pointer-events: none;
+
+}
+
+
+.connection-one {
+
+  width: 175px;
+
+  left: 30%;
+
+  top: 40%;
+
+  transform:
+    rotate(18deg);
+
+}
+
+
+.connection-two {
+
+  width: 175px;
+
+  right: 30%;
+
+  top: 40%;
+
+  transform:
+    rotate(-18deg);
+
+}
+
+
+.connection-three {
+
+  width: 155px;
+
+  left: 38%;
+
+  top: 62%;
+
+  transform:
+    rotate(-12deg);
+
+}
+
+
+.connection-four {
+
+  width: 155px;
+
+  right: 38%;
+
+  top: 62%;
+
+  transform:
+    rotate(12deg);
+
+}
+
+
+/* =========================================================
+   DECORACIÓN
+========================================================= */
+
+.background-hex {
+
+  position: absolute;
+
+  width: 90px;
+
+  height: 104px;
+
+  clip-path: polygon(
+    25% 6.7%,
+    75% 6.7%,
+    100% 50%,
+    75% 93.3%,
+    25% 93.3%,
+    0 50%
+  );
+
+  border: 1px solid
+    rgba(39, 169, 255, 0.06);
+
+  background:
+    rgba(20, 104, 157, 0.025);
+
+  opacity: 0.8;
+
+  pointer-events: none;
+
+}
+
+
+.hex-one {
+
+  left: 5%;
+
+  top: 20px;
+
+}
+
+
+.hex-two {
+
+  right: 5%;
+
+  top: 25px;
+
+}
+
+
+.hex-three {
+
+  left: 6%;
+
+  bottom: 60px;
+
+}
+
+
+.hex-four {
+
+  right: 6%;
+
+  bottom: 80px;
+
+}
+
+
+.hex-five {
+
+  left: 47%;
+
+  top: 18px;
+
+}
+
+
+.hex-six {
+
+  right: 45%;
+
+  bottom: 5px;
+
+}
+
+
+/* =========================================================
+   ESTADO DEL SISTEMA
+========================================================= */
+
+.system-status {
+
+  position: absolute;
+
+  left: 24px;
+
+  right: 24px;
+
+  bottom: 18px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 12px 16px;
+
+  border: 1px solid
+    rgba(39, 145, 210, 0.12);
+
+  border-radius: 13px;
+
+  background:
+    rgba(5, 22, 36, 0.72);
+
+  z-index: 10;
+
+}
+
+
+.status-indicator {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+}
+
+
+.status-light {
+
+  width: 8px;
+
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #38d78b;
+
+  box-shadow:
+    0 0 12px
+    rgba(56, 215, 139, 0.7);
+
+}
+
+
+.status-indicator div {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+
+}
+
+
+.status-indicator strong {
+
+  color: #dff4ff;
+
+  font-size: 10px;
+
+}
+
+
+.status-indicator span {
+
+  color: #58788d;
+
+  font-size: 9px;
+
+}
+
+
+.status-info {
+
+  display: flex;
+
+  gap: 8px;
+
+  color: #50748b;
+
+  font-size: 9px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .hex-users {
+
+    left: 10%;
+
+  }
+
+  .hex-available {
+
+    right: 10%;
+
+  }
+
+  .hex-labs {
+
+    left: 23%;
+
+  }
+
+  .hex-reservations {
+
+    right: 23%;
+
+  }
+
+}
+
+
+@media (max-width: 900px) {
+
+  .dashboard {
+
+    padding: 20px;
+
+  }
+
+
+  .honeycomb-section {
+
+    min-height: 900px;
+
+  }
+
+
+  .hex-users {
+
+    left: 50%;
+
+    top: 25px;
+
+    transform:
+      translateX(-50%);
+
+  }
+
+
+  .hex-users:hover {
+
+    transform:
+      translateX(-50%)
+      scale(1.055);
+
+  }
+
+
+  .hex-center {
+
+    top: 260px;
+
+    left: 50%;
+
+    transform:
+      translateX(-50%);
+
+  }
+
+
+  .hex-center:hover {
+
+    transform:
+      translateX(-50%)
+      scale(1.055);
+
+  }
+
+
+  .hex-labs {
+
+    left: 15%;
+
+    bottom: 210px;
+
+  }
+
+
+  .hex-reservations {
+
+    right: 15%;
+
+    bottom: 210px;
+
+  }
+
+
+  .hex-available {
+
+    left: 50%;
+
+    right: auto;
+
+    top: auto;
+
+    bottom: 10px;
+
+    transform:
+      translateX(-50%);
+
+  }
+
+
+  .hex-available:hover {
+
+    transform:
+      translateX(-50%)
+      scale(1.055);
+
+  }
+
+
+  .hex-locks {
+
+    display: none;
+
+  }
+
+
+  .connection {
+
+    display: none;
+
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .dashboard {
+
+    padding: 14px;
+
+  }
+
+
+  .dashboard-header {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+  }
+
+
+  .honeycomb-section {
+
+    min-height: 1050px;
+
+  }
+
+
+  .hex-card {
+
+    width: 185px;
+
+    height: 215px;
+
+  }
+
+
+  .hex-center {
+
+    width: 215px;
+
+    height: 245px;
+
+    top: 255px;
+
+  }
+
+
+  .hex-users {
+
+    top: 15px;
+
+  }
+
+
+  .hex-labs {
+
+    left: 50%;
+
+    bottom: 305px;
+
+    transform:
+      translateX(-50%);
+
+  }
+
+
+  .hex-labs:hover {
+
+    transform:
+      translateX(-50%)
+      scale(1.055);
+
+  }
+
+
+  .hex-reservations {
+
+    left: 50%;
+
+    right: auto;
+
+    bottom: 90px;
+
+    transform:
+      translateX(-50%);
+
+  }
+
+
+  .hex-reservations:hover {
+
+    transform:
+      translateX(-50%)
+      scale(1.055);
+
+  }
+
+
+  .hex-available {
+
+    display: none;
+
+  }
+
+
+  .system-status {
+
+    left: 14px;
+
+    right: 14px;
+
+    bottom: 12px;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+  }
+
+
+  .status-info {
+
+    display: none;
+
+  }
+
+
+  .welcome h1 {
+
+    font-size: 25px;
+
+  }
+
+}

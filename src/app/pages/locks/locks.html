@@ -1,0 +1,309 @@
+<div class="page-container">
+
+  <!-- ENCABEZADO -->
+  <div class="page-header">
+
+    <div>
+      <span class="page-eyebrow">CONTROL DE LABORATORIOS</span>
+
+      <h1>Bloqueos</h1>
+
+      <p>
+        Consulta las restricciones y condiciones programadas
+        para los laboratorios.
+      </p>
+    </div>
+
+    <div class="header-icon">
+      🚧
+    </div>
+
+  </div>
+
+
+  <!-- RESUMEN -->
+  <div class="summary-grid">
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        🚧
+      </div>
+
+      <div>
+        <span>Total de bloqueos</span>
+
+        <strong>
+          {{ conditions.length }}
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        🧪
+      </div>
+
+      <div>
+        <span>Laboratorios afectados</span>
+
+        <strong>
+          {{ conditions.length }}
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        📅
+      </div>
+
+      <div>
+        <span>Registros mostrados</span>
+
+        <strong>
+          {{ filteredConditions.length }}
+        </strong>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CONTENIDO -->
+  <div class="content-card">
+
+    <!-- BARRA DE HERRAMIENTAS -->
+    <div class="toolbar">
+
+      <div>
+
+        <h2>Condiciones programadas</h2>
+
+        <p>
+          Bloqueos, mantenimientos y restricciones
+          de los laboratorios.
+        </p>
+
+      </div>
+
+
+      <div class="search-box">
+
+        <span>🔍</span>
+
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (input)="searchConditions()"
+          placeholder="Buscar laboratorio, tipo o motivo..."
+        />
+
+      </div>
+
+    </div>
+
+
+    <!-- CARGANDO -->
+    <div
+      class="loading-state"
+      *ngIf="loading">
+
+      <div class="loading-spinner"></div>
+
+      <p>
+        Cargando bloqueos...
+      </p>
+
+    </div>
+
+
+    <!-- ERROR -->
+    <div
+      class="error-state"
+      *ngIf="!loading && errorMessage">
+
+      <span>⚠️</span>
+
+      <p>
+        {{ errorMessage }}
+      </p>
+
+      <button
+        type="button"
+        (click)="loadConditions()">
+
+        Reintentar
+
+      </button>
+
+    </div>
+
+
+    <!-- TABLA -->
+    <div
+      class="table-container"
+      *ngIf="!loading && !errorMessage">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Laboratorio</th>
+
+            <th>Fecha</th>
+
+            <th>Horario</th>
+
+            <th>Tipo</th>
+
+            <th>Motivo</th>
+
+            <th>Estado</th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr
+            *ngFor="
+              let condition of filteredConditions;
+              trackBy: trackByConditionId
+            ">
+
+            <td>
+
+              <div class="lab-cell">
+
+                <div class="lab-icon">
+                  🧪
+                </div>
+
+                <div>
+
+                  <strong>
+                    {{ condition.UMG_Lab_Nombre }}
+                  </strong>
+
+                  <span>
+                    ID: {{ condition.UMG_Lab_ID }}
+                  </span>
+
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <td>
+
+              <span class="date-value">
+
+                {{ condition.UMG_Fecha }}
+
+              </span>
+
+            </td>
+
+
+            <td>
+
+              <span class="time-value">
+
+                {{ condition.UMG_Hora_Inicio }}
+                -
+                {{ condition.UMG_Hora_Fin }}
+
+              </span>
+
+            </td>
+
+
+            <td>
+
+              <span class="type-badge">
+
+                {{ condition.UMG_Tipo }}
+
+              </span>
+
+            </td>
+
+
+            <td>
+
+              <div class="reason">
+
+                {{ condition.UMG_Motivo }}
+
+              </div>
+
+            </td>
+
+
+            <td>
+
+              <span
+                class="status-badge"
+                [class.active]="condition.UMG_Estado === 1"
+                [class.inactive]="condition.UMG_Estado !== 1">
+
+                <span class="status-dot"></span>
+
+                {{ getStatusText(condition.UMG_Estado) }}
+
+              </span>
+
+            </td>
+
+          </tr>
+
+
+          <!-- SIN RESULTADOS -->
+
+          <tr
+            *ngIf="filteredConditions.length === 0">
+
+            <td
+              colspan="6"
+              class="empty-state">
+
+              <div class="empty-icon">
+                🔎
+              </div>
+
+              <strong>
+                No se encontraron bloqueos
+              </strong>
+
+              <span>
+                No existen registros que coincidan
+                con la búsqueda.
+              </span>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

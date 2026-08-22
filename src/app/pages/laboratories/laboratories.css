@@ -1,0 +1,880 @@
+.laboratories-page {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.laboratories-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.laboratories-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.laboratories-header p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+
+/* =========================
+   BOTÓN
+========================= */
+
+.btn-primary {
+  border: none;
+  background: #2563eb;
+  color: white;
+
+  padding: 11px 18px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-primary span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.laboratories-card {
+  background: white;
+
+  border-radius: 14px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.04);
+
+  overflow: hidden;
+}
+
+
+/* =========================
+   CARD HEADER
+========================= */
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px 28px;
+
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-header h2 {
+  margin: 0;
+
+  font-size: 18px;
+
+  color: #111827;
+}
+
+.card-header p {
+  margin: 5px 0 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+.laboratory-count {
+  font-size: 22px;
+
+  font-weight: 700;
+
+  color: #2563eb;
+
+  text-align: right;
+}
+
+.laboratory-count span {
+  display: block;
+
+  font-size: 12px;
+
+  font-weight: 400;
+
+  color: #9ca3af;
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.card-toolbar {
+  padding: 18px 28px;
+
+  background: #fafafa;
+
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 450px;
+
+  display: flex;
+  align-items: center;
+
+  background: white;
+
+  border: 1px solid #dfe3e8;
+
+  border-radius: 8px;
+
+  padding: 0 14px;
+
+  transition: 0.2s ease;
+}
+
+.search-box:focus-within {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-icon {
+  margin-right: 8px;
+}
+
+.search-box input {
+  width: 100%;
+
+  border: none;
+
+  outline: none;
+
+  padding: 11px 0;
+
+  font-size: 14px;
+
+  color: #374151;
+
+  background: transparent;
+}
+
+
+/* =========================
+   TABLA
+========================= */
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f9fafb;
+}
+
+th {
+  padding: 14px 24px;
+
+  text-align: left;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: #6b7280;
+
+  text-transform: uppercase;
+}
+
+td {
+  padding: 16px 24px;
+
+  border-top: 1px solid #f0f0f0;
+
+  font-size: 14px;
+
+  color: #374151;
+}
+
+tbody tr {
+  transition: background 0.15s ease;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+
+/* =========================
+   LABORATORIO
+========================= */
+
+.laboratory-cell {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.laboratory-icon {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 9px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #eff6ff;
+
+  font-size: 18px;
+}
+
+.laboratory-cell strong {
+  display: block;
+
+  color: #111827;
+
+  font-weight: 600;
+}
+
+.laboratory-cell span {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  color: #9ca3af;
+}
+
+
+/* =========================
+   ESTADO
+========================= */
+
+.status-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background: #ecfdf5;
+
+  color: #059669;
+}
+
+.status-badge.inactive {
+  background: #fef2f2;
+
+  color: #dc2626;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+
+/* =========================
+   DISPONIBILIDAD
+========================= */
+
+.availability-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.availability-badge.available {
+  background: #eff6ff;
+
+  color: #2563eb;
+}
+
+.availability-badge.unavailable {
+  background: #f3f4f6;
+
+  color: #6b7280;
+}
+
+.availability-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+
+/* =========================
+   FECHA
+========================= */
+
+.date-cell {
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   ACCIONES
+========================= */
+
+.actions {
+  display: flex;
+
+  gap: 6px;
+}
+
+.icon-button {
+  width: 32px;
+  height: 32px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.icon-button:hover {
+  background: #eff6ff;
+}
+
+.icon-button.delete:hover {
+  background: #fef2f2;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-state {
+  min-height: 250px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  color: #6b7280;
+}
+
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+
+  border: 3px solid #e5e7eb;
+
+  border-top-color: #2563eb;
+
+  border-radius: 50%;
+
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-state {
+  padding: 40px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: #b91c1c;
+
+  background: #fef2f2;
+}
+
+.error-state p {
+  margin: 4px 0 0;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   SIN RESULTADOS
+========================= */
+
+.empty-state {
+  padding: 60px 20px !important;
+
+  text-align: center;
+
+  color: #6b7280;
+}
+
+.empty-icon {
+  font-size: 36px;
+
+  margin-bottom: 10px;
+}
+
+.empty-state strong {
+  display: block;
+
+  color: #374151;
+}
+
+.empty-state p {
+  margin-top: 6px;
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .laboratories-page {
+    padding: 20px;
+  }
+
+  .laboratories-header {
+    align-items: flex-start;
+
+    gap: 15px;
+
+    flex-direction: column;
+  }
+
+  .card-header {
+    padding: 20px;
+  }
+
+  .card-toolbar {
+    padding: 15px 20px;
+  }
+
+  th,
+  td {
+    padding: 12px 16px;
+  }
+
+}
+/* ==================================================
+   MODAL NUEVO / EDITAR LABORATORIO
+================================================== */
+
+.modal-backdrop {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(15, 23, 42, 0.60);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  box-sizing: border-box;
+
+  z-index: 99999 !important;
+}
+
+
+/* ==================================================
+   VENTANA DEL MODAL
+================================================== */
+
+.laboratory-modal {
+  width: 100%;
+  max-width: 600px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.30);
+
+  position: relative;
+
+  margin: auto;
+
+  animation: laboratoryModalAppear 0.20s ease-out;
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.laboratory-modal .modal-header {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  padding: 28px 30px 20px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+.laboratory-modal .modal-eyebrow {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  color: #16a34a;
+}
+
+
+.laboratory-modal .modal-header h2 {
+  margin: 0;
+
+  font-size: 24px;
+
+  color: #111827;
+}
+
+
+.laboratory-modal .modal-header p {
+  margin: 7px 0 0;
+
+  font-size: 14px;
+
+  color: #6b7280;
+}
+
+
+/* ==================================================
+   CERRAR
+================================================== */
+
+.laboratory-modal .modal-close {
+  border: none;
+
+  background: transparent;
+
+  color: #6b7280;
+
+  font-size: 30px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  padding: 0 4px;
+}
+
+
+.laboratory-modal .modal-close:hover {
+  color: #111827;
+}
+
+
+/* ==================================================
+   FORMULARIO
+================================================== */
+
+.laboratory-modal .form-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 20px;
+
+  padding: 26px 30px;
+}
+
+
+.laboratory-modal .form-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.laboratory-modal .form-field:first-child {
+  grid-column: 1 / -1;
+}
+
+
+.laboratory-modal .form-field label {
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #374151;
+}
+
+
+.laboratory-modal .form-field label span {
+  color: #dc2626;
+}
+
+
+.laboratory-modal .form-field input,
+.laboratory-modal .form-field select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 11px 13px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #111827;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+
+.laboratory-modal .form-field input:focus,
+.laboratory-modal .form-field select:focus {
+  border-color: #16a34a;
+
+  box-shadow:
+    0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+
+/* ==================================================
+   ERROR
+================================================== */
+
+.laboratory-modal .form-alert {
+  margin: 20px 30px 0;
+
+  padding: 12px 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  border-radius: 9px;
+
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+
+  color: #b91c1c;
+
+  font-size: 14px;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.laboratory-modal .modal-footer {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 20px 30px 26px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+
+/* ==================================================
+   BOTÓN CANCELAR
+================================================== */
+
+.laboratory-modal .btn-secondary {
+  padding: 10px 18px;
+
+  border-radius: 9px;
+
+  border: 1px solid #d1d5db;
+
+  background: #ffffff;
+
+  color: #374151;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.laboratory-modal .btn-secondary:hover {
+  background: #f9fafb;
+}
+
+
+/* ==================================================
+   ANIMACIÓN
+================================================== */
+
+@keyframes laboratoryModalAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 650px) {
+
+  .modal-backdrop {
+    padding: 15px;
+  }
+
+  .laboratory-modal .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .laboratory-modal .form-field:first-child {
+    grid-column: auto;
+  }
+
+  .laboratory-modal .modal-header {
+    padding: 22px;
+  }
+
+  .laboratory-modal .form-grid {
+    padding: 22px;
+  }
+
+  .laboratory-modal .modal-footer {
+    padding: 18px 22px 22px;
+  }
+
+}

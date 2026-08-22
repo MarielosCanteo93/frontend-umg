@@ -1,0 +1,1090 @@
+<div class="page-container">
+
+  <!-- =====================================================
+       ENCABEZADO
+  ====================================================== -->
+
+  <div class="page-header">
+
+    <div>
+
+      <span class="page-eyebrow">
+        GESTIÓN ACADÉMICA
+      </span>
+
+      <h1>
+        Reservaciones
+      </h1>
+
+      <p>
+        Consulta y administra las reservas
+        de los laboratorios.
+      </p>
+
+    </div>
+
+
+    <div class="header-icon">
+      📅
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MENSAJE ÉXITO
+  ====================================================== -->
+
+  <div
+    class="success-alert"
+    *ngIf="successMessage"
+  >
+
+    <span>
+      ✓
+    </span>
+
+    <span>
+      {{ successMessage }}
+    </span>
+
+  </div>
+
+
+  <!-- =====================================================
+       RESUMEN
+  ====================================================== -->
+
+  <div class="summary-grid">
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        📅
+      </div>
+
+      <div>
+
+        <span>
+          Total de reservas
+        </span>
+
+        <strong>
+          {{ reservations.length }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        🧪
+      </div>
+
+      <div>
+
+        <span>
+          Laboratorios utilizados
+        </span>
+
+        <strong>
+          {{ reservations.length }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        🔎
+      </div>
+
+      <div>
+
+        <span>
+          Registros mostrados
+        </span>
+
+        <strong>
+          {{ filteredReservations.length }}
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       CONTENIDO
+  ====================================================== -->
+
+  <div class="content-card">
+
+
+    <!-- ===================================================
+         TOOLBAR
+    ==================================================== -->
+
+    <div class="toolbar">
+
+      <div>
+
+        <h2>
+          Reservaciones registradas
+        </h2>
+
+        <p>
+          Consulta las reservas realizadas
+          para los laboratorios.
+        </p>
+
+      </div>
+
+
+      <div class="toolbar-actions">
+
+        <div class="search-box">
+
+          <span>
+            🔍
+          </span>
+
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            (input)="searchReservations()"
+            placeholder="Buscar docente, laboratorio..."
+          />
+
+        </div>
+
+
+        <button
+          type="button"
+          class="new-button"
+          (click)="openReservationModal()"
+        >
+
+          <span>
+            +
+          </span>
+
+          Nueva reserva
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         LOADING
+    ==================================================== -->
+
+    <div
+      class="loading-state"
+      *ngIf="loading"
+    >
+
+      <div class="loading-spinner"></div>
+
+      <p>
+        Cargando reservaciones...
+      </p>
+
+    </div>
+
+
+    <!-- ===================================================
+         ERROR
+    ==================================================== -->
+
+    <div
+      class="error-state"
+      *ngIf="!loading && errorMessage && !showReservationModal"
+    >
+
+      <span>
+        ⚠️
+      </span>
+
+      <p>
+        {{ errorMessage }}
+      </p>
+
+      <button
+        type="button"
+        (click)="loadReservations()"
+      >
+
+        Reintentar
+
+      </button>
+
+    </div>
+
+
+    <!-- ===================================================
+         TABLA
+    ==================================================== -->
+
+    <div
+      class="table-container"
+      *ngIf="!loading && !errorMessage"
+    >
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Docente
+            </th>
+
+            <th>
+              Laboratorio
+            </th>
+
+            <th>
+              Fecha
+            </th>
+
+            <th>
+              Horario
+            </th>
+
+            <th>
+              Motivo
+            </th>
+
+            <th>
+              Estado
+            </th>
+
+            <th>
+              Acciones
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <!-- ===========================================
+               RESERVACIONES
+          ============================================ -->
+
+          <tr
+            *ngFor="
+              let reservation of filteredReservations;
+              trackBy: trackByReservationId
+            "
+          >
+
+
+            <!-- DOCENTE -->
+
+            <td>
+
+              <div class="teacher-cell">
+
+                <div class="teacher-avatar">
+
+                  {{
+                    reservation.UMG_Docente_Nombre
+                      ?.charAt(0)
+                      ?.toUpperCase()
+                  }}
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    {{ reservation.UMG_Docente_Nombre }}
+                  </strong>
+
+                  <span>
+                    {{ reservation.UMG_Docente_Correo }}
+                  </span>
+
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <!-- LABORATORIO -->
+
+            <td>
+
+              <div class="lab-cell">
+
+                <div class="lab-icon">
+                  🧪
+                </div>
+
+                <div>
+
+                  <strong>
+                    {{ reservation.UMG_Lab_Nombre }}
+                  </strong>
+
+                  <span>
+                    ID: {{ reservation.UMG_Lab_ID }}
+                  </span>
+
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <!-- FECHA -->
+
+            <td>
+
+              <span class="date-value">
+
+                {{ reservation.UMG_Fecha_Reserva }}
+
+              </span>
+
+            </td>
+
+
+            <!-- HORARIO -->
+
+            <td>
+
+              <span class="time-value">
+
+                {{ reservation.UMG_Hora_Inicio }}
+
+                -
+
+                {{ reservation.UMG_Hora_Fin }}
+
+              </span>
+
+            </td>
+
+
+            <!-- MOTIVO -->
+
+            <td>
+
+              <div class="reason">
+
+                {{ reservation.UMG_Motivo }}
+
+              </div>
+
+            </td>
+
+
+            <!-- ESTADO -->
+
+            <td>
+
+              <span
+                class="status-badge"
+                [ngClass]="
+                  getStatusClass(
+                    reservation.UMG_Estado
+                  )
+                "
+              >
+
+                <span class="status-dot"></span>
+
+                {{ reservation.UMG_Estado }}
+
+              </span>
+
+            </td>
+
+
+            <!-- ACCIONES -->
+
+            <td>
+
+              <div class="actions">
+
+
+                <!-- VER -->
+
+                <button
+                  type="button"
+                  class="action-button"
+                  title="Ver detalle"
+                  (click)="viewReservation(reservation)"
+                >
+
+                  👁️
+
+                </button>
+
+
+                <!-- EDITAR -->
+
+                <button
+                  type="button"
+                  class="action-button"
+                  title="Editar"
+                  (click)="editReservation(reservation)"
+                >
+
+                  ✏️
+
+                </button>
+
+
+                <!-- CANCELAR -->
+
+                <button
+                  type="button"
+                  class="action-button danger"
+                  title="Cancelar"
+                  (click)="cancelReservation(reservation)"
+                >
+
+                  🗑️
+
+                </button>
+
+
+              </div>
+
+            </td>
+
+          </tr>
+
+
+          <!-- ===========================================
+               SIN RESULTADOS
+          ============================================ -->
+
+          <tr
+            *ngIf="
+              filteredReservations.length === 0
+            "
+          >
+
+            <td
+              colspan="7"
+              class="empty-state"
+            >
+
+              <div class="empty-icon">
+                🔎
+              </div>
+
+              <strong>
+                No se encontraron reservaciones
+              </strong>
+
+              <span>
+                No existen registros que coincidan
+                con la búsqueda.
+              </span>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL NUEVA / EDITAR RESERVA
+========================================================== -->
+
+<div
+  class="modal-backdrop"
+  *ngIf="showReservationModal"
+  (click)="closeReservationModal()"
+>
+
+
+  <div
+    class="reservation-modal"
+    (click)="$event.stopPropagation()"
+  >
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="modal-header">
+
+      <div>
+
+        <span class="modal-eyebrow">
+          GESTIÓN ACADÉMICA
+        </span>
+
+
+        <h2>
+
+          {{
+            editingReservationId === null
+              ? 'Nueva reserva'
+              : 'Editar reserva'
+          }}
+
+        </h2>
+
+
+        <p>
+
+          {{
+            editingReservationId === null
+              ? 'Registra una nueva reserva de laboratorio.'
+              : 'Actualiza la información de la reserva.'
+          }}
+
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="modal-close"
+        [disabled]="saving"
+        (click)="closeReservationModal()"
+      >
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         ERROR DEL FORMULARIO
+    ====================================================== -->
+
+    <div
+      class="form-alert"
+      *ngIf="errorMessage"
+    >
+
+      <span>
+        ⚠️
+      </span>
+
+      <span>
+        {{ errorMessage }}
+      </span>
+
+    </div>
+
+
+    <!-- =====================================================
+         FORMULARIO
+    ====================================================== -->
+
+    <div class="form-grid">
+
+
+      <!-- DOCENTE -->
+
+      <div class="form-field">
+
+        <label>
+
+          Docente
+
+          <span>
+            *
+          </span>
+
+        </label>
+
+
+        <select
+          [(ngModel)]="newReservation.UMG_User_ID"
+          [disabled]="saving"
+        >
+
+          <option [ngValue]="null">
+            Seleccione un docente
+          </option>
+
+
+          <option
+            *ngFor="let user of users"
+            [ngValue]="user.UMG_ID"
+          >
+
+            {{ user.UMG_Nombre }}
+            {{ user.UMG_Apellido }}
+
+            -
+
+            {{ user.UMG_Usuario }}
+
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- LABORATORIO -->
+
+      <div class="form-field">
+
+        <label>
+
+          Laboratorio
+
+          <span>
+            *
+          </span>
+
+        </label>
+
+
+        <select
+          [(ngModel)]="newReservation.UMG_Lab_ID"
+          [disabled]="saving"
+        >
+
+          <option [ngValue]="null">
+            Seleccione un laboratorio
+          </option>
+
+
+          <option
+            *ngFor="let laboratory of laboratories"
+            [ngValue]="laboratory.UMG_ID"
+            [disabled]="
+              laboratory.UMG_Estado !== 1
+            "
+          >
+
+            {{ laboratory.UMG_Nombre }}
+
+            {{
+              laboratory.UMG_Estado !== 1
+                ? '(Inactivo)'
+                : ''
+            }}
+
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- FECHA -->
+
+      <div class="form-field">
+
+        <label>
+
+          Fecha de reserva
+
+          <span>
+            *
+          </span>
+
+        </label>
+
+
+        <input
+          type="date"
+          [(ngModel)]="newReservation.UMG_Fecha_Reserva"
+          [disabled]="saving"
+        />
+
+      </div>
+
+
+      <!-- HORA INICIO -->
+
+      <div class="form-field">
+
+        <label>
+
+          Hora de inicio
+
+          <span>
+            *
+          </span>
+
+        </label>
+
+
+        <input
+          type="time"
+          min="07:00"
+          max="22:00"
+          [(ngModel)]="newReservation.UMG_Hora_Inicio"
+          [disabled]="saving"
+        />
+
+      </div>
+
+
+      <!-- HORA FIN -->
+
+      <div class="form-field">
+
+        <label>
+
+          Hora de finalización
+
+          <span>
+            *
+          </span>
+
+        </label>
+
+
+        <input
+          type="time"
+          min="07:00"
+          max="22:00"
+          [(ngModel)]="newReservation.UMG_Hora_Fin"
+          [disabled]="saving"
+        />
+
+      </div>
+
+
+      <!-- MOTIVO -->
+
+      <div class="form-field full-width">
+
+        <label>
+
+          Motivo de la reserva
+
+          <span>
+            *
+          </span>
+
+        </label>
+
+
+        <textarea
+          rows="4"
+          [(ngModel)]="newReservation.UMG_Motivo"
+          placeholder="Indique el motivo de la reserva..."
+          [disabled]="saving"
+        ></textarea>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <div class="modal-footer">
+
+
+      <button
+        type="button"
+        class="btn-secondary"
+        [disabled]="saving"
+        (click)="closeReservationModal()"
+      >
+
+        Cancelar
+
+      </button>
+
+
+      <button
+        type="button"
+        class="btn-primary"
+        [disabled]="saving"
+        (click)="
+          editingReservationId === null
+            ? createReservation()
+            : updateReservation()
+        "
+      >
+
+
+        <span *ngIf="!saving">
+
+          {{
+            editingReservationId === null
+              ? 'Crear reserva'
+              : 'Guardar cambios'
+          }}
+
+        </span>
+
+
+        <span *ngIf="saving">
+
+          Guardando...
+
+        </span>
+
+
+      </button>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL VER DETALLE
+========================================================== -->
+
+<div
+  class="modal-backdrop"
+  *ngIf="showDetailModal"
+  (click)="closeDetailModal()"
+>
+
+
+  <div
+    class="reservation-modal detail-modal"
+    (click)="$event.stopPropagation()"
+  >
+
+
+    <!-- =====================================================
+         HEADER DETALLE
+    ====================================================== -->
+
+    <div class="modal-header">
+
+      <div>
+
+        <span class="modal-eyebrow">
+          DETALLE
+        </span>
+
+
+        <h2>
+
+          Reserva
+
+          #{{ selectedReservation?.UMG_ID }}
+
+        </h2>
+
+
+        <p>
+          Información de la reservación.
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="modal-close"
+        (click)="closeDetailModal()"
+      >
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         DETALLE
+    ====================================================== -->
+
+    <div
+      class="detail-grid"
+      *ngIf="selectedReservation"
+    >
+
+
+      <div class="detail-item">
+
+        <span>
+          Docente
+        </span>
+
+        <strong>
+          {{ selectedReservation.UMG_Docente_Nombre }}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          Correo
+        </span>
+
+        <strong>
+          {{ selectedReservation.UMG_Docente_Correo }}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          Laboratorio
+        </span>
+
+        <strong>
+          {{ selectedReservation.UMG_Lab_Nombre }}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          ID laboratorio
+        </span>
+
+        <strong>
+          {{ selectedReservation.UMG_Lab_ID }}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          Fecha
+        </span>
+
+        <strong>
+          {{ selectedReservation.UMG_Fecha_Reserva }}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          Horario
+        </span>
+
+        <strong>
+
+          {{ selectedReservation.UMG_Hora_Inicio }}
+
+          -
+
+          {{ selectedReservation.UMG_Hora_Fin }}
+
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          Estado
+        </span>
+
+        <strong>
+          {{ selectedReservation.UMG_Estado }}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          Fecha de registro
+        </span>
+
+        <strong>
+          {{ selectedReservation.UMG_Fecha_Registro }}
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item detail-full">
+
+        <span>
+          Motivo
+        </span>
+
+        <strong>
+          {{ selectedReservation.UMG_Motivo }}
+        </strong>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER DETALLE
+    ====================================================== -->
+
+    <div class="modal-footer">
+
+      <button
+        type="button"
+        class="btn-secondary"
+        (click)="closeDetailModal()"
+      >
+
+        Cerrar
+
+      </button>
+
+    </div>
+
+
+  </div>
+
+</div>

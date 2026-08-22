@@ -1,0 +1,613 @@
+<div class="laboratories-page">
+
+  <!-- ==================================================
+       ENCABEZADO
+  ================================================== -->
+
+  <div class="laboratories-header">
+
+    <div>
+      <span class="page-eyebrow">
+        ADMINISTRACIÓN
+      </span>
+
+      <h1>
+        Laboratorios
+      </h1>
+
+      <p>
+        Gestión y disponibilidad de los laboratorios
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="btn-primary"
+      (click)="openLaboratoryModal()"
+    >
+      <span>+</span>
+      Nuevo laboratorio
+    </button>
+
+  </div>
+
+
+  <!-- ==================================================
+       MENSAJE DE ÉXITO
+  ================================================== -->
+
+  <div
+    class="success-alert"
+    *ngIf="successMessage"
+  >
+    <span>✓</span>
+
+    <span>
+      {{ successMessage }}
+    </span>
+  </div>
+
+
+  <!-- ==================================================
+       CARD PRINCIPAL
+  ================================================== -->
+
+  <div class="laboratories-card">
+
+    <div class="card-header">
+
+      <div>
+
+        <h2>
+          Laboratorios registrados
+        </h2>
+
+        <p>
+          Consulta el estado y disponibilidad
+          de los laboratorios.
+        </p>
+
+      </div>
+
+      <div class="laboratory-count">
+
+        {{ filteredLaboratories.length }}
+
+        <span>
+          laboratorios
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         BÚSQUEDA
+    ================================================== -->
+
+    <div class="card-toolbar">
+
+      <div class="search-box">
+
+        <span class="search-icon">
+          🔍
+        </span>
+
+        <input
+          type="text"
+          placeholder="Buscar laboratorio..."
+          [(ngModel)]="searchTerm"
+          (input)="searchLaboratories()"
+        />
+
+      </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         LOADING
+    ================================================== -->
+
+    <div
+      class="loading-state"
+      *ngIf="loading"
+    >
+
+      <div class="loading-spinner"></div>
+
+      <span>
+        Cargando laboratorios...
+      </span>
+
+    </div>
+
+
+    <!-- ==================================================
+         ERROR
+    ================================================== -->
+
+    <div
+      class="error-state"
+      *ngIf="
+        !loading &&
+        errorMessage &&
+        !showLaboratoryModal
+      "
+    >
+
+      <span>
+        ⚠️
+      </span>
+
+      <div>
+
+        <strong>
+          No se pudieron cargar los laboratorios
+        </strong>
+
+        <p>
+          {{ errorMessage }}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TABLA
+    ================================================== -->
+
+    <div
+      class="table-container"
+      *ngIf="
+        !loading &&
+        !errorMessage
+      "
+    >
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Laboratorio
+            </th>
+
+            <th>
+              Estado
+            </th>
+
+            <th>
+              Disponibilidad
+            </th>
+
+            <th>
+              Fecha de registro
+            </th>
+
+            <th>
+              Acciones
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <!-- ==================================================
+               LABORATORIOS
+          ================================================== -->
+
+          <tr
+            *ngFor="
+              let laboratory of filteredLaboratories;
+              trackBy: trackByLaboratoryId
+            "
+          >
+
+            <!-- LABORATORIO -->
+
+            <td>
+
+              <div class="laboratory-cell">
+
+                <div class="laboratory-icon">
+                  🧪
+                </div>
+
+                <div>
+
+                  <strong>
+                    {{ laboratory.UMG_Nombre }}
+                  </strong>
+
+                  <span>
+                    ID #{{ laboratory.UMG_ID }}
+                  </span>
+
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <!-- ESTADO -->
+
+            <td>
+
+              <span
+                class="status-badge"
+                [class.active]="
+                  laboratory.UMG_Estado === 1
+                "
+                [class.inactive]="
+                  laboratory.UMG_Estado !== 1
+                "
+              >
+
+                <span class="status-dot"></span>
+
+                {{
+                  getStatusText(
+                    laboratory.UMG_Estado
+                  )
+                }}
+
+              </span>
+
+            </td>
+
+
+            <!-- DISPONIBILIDAD -->
+
+            <td>
+
+              <span
+                class="availability-badge"
+                [class.available]="
+                  isAvailable(
+                    laboratory.UMG_Reserva
+                  )
+                "
+                [class.unavailable]="
+                  !isAvailable(
+                    laboratory.UMG_Reserva
+                  )
+                "
+              >
+
+                <span class="availability-dot"></span>
+
+                {{
+                  getReservationStatus(
+                    laboratory.UMG_Reserva
+                  )
+                }}
+
+              </span>
+
+            </td>
+
+
+            <!-- FECHA -->
+
+            <td>
+
+              <span class="date-cell">
+
+                {{
+                  laboratory.UMG_Fecha_Registro
+                    | date:'dd/MM/yyyy HH:mm'
+                }}
+
+              </span>
+
+            </td>
+
+
+            <!-- ==================================================
+                 ACCIONES
+            ================================================== -->
+
+            <td>
+
+              <div class="actions">
+
+                <!-- EDITAR -->
+
+                <button
+                  type="button"
+                  class="icon-button"
+                  title="Editar laboratorio"
+                  (click)="editLaboratory(laboratory)"
+                >
+                  ✏️
+                </button>
+
+
+                <!-- ELIMINAR -->
+
+                <button
+                  type="button"
+                  class="icon-button delete"
+                  title="Eliminar laboratorio"
+                  (click)="deleteLaboratory(laboratory)"
+                >
+                  🗑️
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+
+          <!-- ==================================================
+               SIN RESULTADOS
+          ================================================== -->
+
+          <tr
+            *ngIf="
+              filteredLaboratories.length === 0
+            "
+          >
+
+            <td
+              colspan="5"
+              class="empty-state"
+            >
+
+              <div class="empty-icon">
+                🧪
+              </div>
+
+              <strong>
+                No se encontraron laboratorios
+              </strong>
+
+              <p>
+                Intenta cambiar el criterio de búsqueda.
+              </p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ==================================================
+     MODAL NUEVO / EDITAR
+================================================== -->
+
+<div
+  class="modal-backdrop"
+  *ngIf="showLaboratoryModal"
+  (click)="closeLaboratoryModal()"
+>
+
+  <div
+    class="laboratory-modal"
+    (click)="$event.stopPropagation()"
+  >
+
+
+    <!-- ==================================================
+         HEADER
+    ================================================== -->
+
+    <div class="modal-header">
+
+      <div>
+
+        <span class="modal-eyebrow">
+          ADMINISTRACIÓN
+        </span>
+
+        <h2>
+
+          {{
+            editingLaboratoryId === null
+              ? 'Nuevo laboratorio'
+              : 'Editar laboratorio'
+          }}
+
+        </h2>
+
+        <p>
+
+          {{
+            editingLaboratoryId === null
+              ? 'Registra un nuevo laboratorio en el sistema.'
+              : 'Actualiza la información del laboratorio.'
+          }}
+
+        </p>
+
+      </div>
+
+
+      <!-- CERRAR -->
+
+      <button
+        type="button"
+        class="modal-close"
+        (click)="closeLaboratoryModal()"
+        title="Cerrar"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <!-- ==================================================
+         ERROR
+    ================================================== -->
+
+    <div
+      class="form-alert"
+      *ngIf="errorMessage"
+    >
+
+      <span>
+        ⚠️
+      </span>
+
+      <span>
+        {{ errorMessage }}
+      </span>
+
+    </div>
+
+
+    <!-- ==================================================
+         FORMULARIO
+    ================================================== -->
+
+    <div class="form-grid">
+
+
+      <!-- NOMBRE -->
+
+      <div class="form-field">
+
+        <label>
+
+          Nombre del laboratorio
+
+          <span>*</span>
+
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="newLaboratory.UMG_Nombre"
+          placeholder="Ej. Laboratorio de Computación 1"
+          [disabled]="saving"
+        />
+
+      </div>
+
+
+      <!-- ESTADO -->
+
+      <div class="form-field">
+
+        <label>
+          Estado
+        </label>
+
+        <select
+          [(ngModel)]="newLaboratory.UMG_Estado"
+          [disabled]="saving"
+        >
+
+          <option [ngValue]="1">
+            Activo
+          </option>
+
+          <option [ngValue]="0">
+            Inactivo
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- DISPONIBILIDAD -->
+
+      <div class="form-field">
+
+        <label>
+          Disponibilidad
+        </label>
+
+        <select
+          [(ngModel)]="newLaboratory.UMG_Reserva"
+          [disabled]="saving"
+        >
+
+          <option value="D">
+            Disponible
+          </option>
+
+          <option value="N">
+            No disponible
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <div class="modal-footer">
+
+
+      <!-- CANCELAR -->
+
+      <button
+        type="button"
+        class="btn-secondary"
+        (click)="closeLaboratoryModal()"
+      >
+
+        Cancelar
+
+      </button>
+
+
+      <!-- GUARDAR -->
+
+      <button
+        type="button"
+        class="btn-primary"
+        [disabled]="saving"
+        (click)="createLaboratory()"
+      >
+
+        <span *ngIf="!saving">
+
+          {{
+            editingLaboratoryId === null
+              ? 'Crear laboratorio'
+              : 'Guardar cambios'
+          }}
+
+        </span>
+
+        <span *ngIf="saving">
+          Guardando...
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

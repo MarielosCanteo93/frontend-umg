@@ -1,0 +1,242 @@
+<div class="settings-page">
+
+  <!-- ENCABEZADO -->
+  <header class="settings-header">
+
+    <div>
+      <h1>Configuración</h1>
+
+      <p>
+        Administra tu perfil y las preferencias del sistema.
+      </p>
+    </div>
+
+    <div class="settings-icon">
+      ⚙️
+    </div>
+
+  </header>
+
+
+  <!-- PERFIL -->
+  <section class="settings-section">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        👤
+      </div>
+
+      <div>
+        <h2>Mi perfil</h2>
+
+        <p>
+          Información del usuario actualmente conectado.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="profile-card">
+
+      <div class="profile-avatar">
+        M
+      </div>
+
+      <div class="profile-info">
+
+        <h3>Marielos Canteo</h3>
+
+        <span class="profile-role">
+          Administrador
+        </span>
+
+        <p>
+          Usuario administrador del sistema UMG LAB.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SEGURIDAD -->
+  <section class="settings-section">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        🔐
+      </div>
+
+      <div>
+        <h2>Seguridad</h2>
+
+        <p>
+          Administra la seguridad de tu cuenta.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="settings-card">
+
+      <div class="setting-item">
+
+        <div class="setting-item-info">
+
+          <h3>Contraseña</h3>
+
+          <p>
+            Cambia la contraseña de tu cuenta de usuario.
+          </p>
+
+        </div>
+
+        <button class="settings-button">
+          Cambiar contraseña
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PREFERENCIAS -->
+  <section class="settings-section">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        🔔
+      </div>
+
+      <div>
+        <h2>Preferencias</h2>
+
+        <p>
+          Configuración general de la aplicación.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="settings-card">
+
+      <div class="setting-item">
+
+        <div class="setting-item-info">
+
+          <h3>Notificaciones</h3>
+
+          <p>
+            Recibir notificaciones relacionadas con las reservas.
+          </p>
+
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            checked>
+
+          <span class="slider"></span>
+
+        </label>
+
+      </div>
+
+
+      <div class="setting-item">
+
+        <div class="setting-item-info">
+
+          <h3>Actualización automática</h3>
+
+          <p>
+            Actualizar automáticamente la información del sistema.
+          </p>
+
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            checked>
+
+          <span class="slider"></span>
+
+        </label>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INFORMACIÓN DEL SISTEMA -->
+  <section class="settings-section">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        ℹ️
+      </div>
+
+      <div>
+        <h2>Información del sistema</h2>
+
+        <p>
+          Información técnica de UMG LAB.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="system-info-card">
+
+      <div class="info-row">
+
+        <span>Aplicación</span>
+
+        <strong>UMG LAB</strong>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span>Versión</span>
+
+        <strong>{{ systemVersion }}</strong>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <span>API</span>
+
+        <strong class="status">
+          <span class="status-dot"></span>
+          {{ apiStatus }}
+        </strong>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
